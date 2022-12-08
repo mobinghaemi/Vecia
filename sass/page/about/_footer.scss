@@ -1,0 +1,18 @@
+footer.about {
+    text-align: right;
+    display: flex;
+    justify-content: center;
+
+    > div {
+        width: 50%;
+        display: flex;
+        align-items: center;
+    }
+    > div {
+        flex-direction: column;
+    }
+    p {
+        margin-top: .5rem;
+        width: 300px;
+    }
+}

@@ -1,0 +1,29 @@
+// Smaller : Tablet (768)
+@media screen and (max-width : 767px) {
+    .author {
+        flex-direction: column;
+        p {
+            text-align: center !important;
+        }
+    }
+    .colors {
+        margin: 1.5rem 0 .5rem;
+    }
+    footer.about {
+        flex-direction: column;
+        align-items: center;
+        p {
+            text-align: center !important;
+        }
+    }
+}
+// Smaller : Mobile Large 
+@media screen and (max-width : 425px) {
+    footer.about p {
+        text-align: right !important;
+        width: 275px;
+    }
+    .colors {
+        gap: .5rem;
+    }
+}

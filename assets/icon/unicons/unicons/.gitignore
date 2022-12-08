@@ -1,0 +1,9 @@
+node_modules
+
+# Env files
+.env
+
+# Fontello Build Files
+fontello-*
+config.json
+duplicates.json

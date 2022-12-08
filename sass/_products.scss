@@ -1,0 +1,90 @@
+section.products {
+    #searchBox {
+        width: 50%;
+        padding-top: 0.5rem;
+        margin: auto;
+        position: relative;
+        .search-ic {
+            position: absolute;
+            left: 12px;
+            top: 33.8%;
+            font-size: 1.5rem;
+        }
+    }
+    div.filter {
+        padding: .75rem 0;
+        .products-type {
+            align-items: center;
+            li {
+                color: $bold-color;
+            }
+            li.premium {
+                color: orangered;
+            }
+            li.free {
+                color: #3481EF;
+            }
+        }
+        i {
+            font-size: 1.5rem;
+            padding: 0 .3rem;
+        }
+    }
+    .yield {
+        display: grid;
+        grid-template-columns: repeat(3 , 1fr);
+        gap: .5rem;
+
+        div.card {
+            background-color: white;
+            border-radius: $radius;
+            padding: .75rem;
+            text-align: center;
+            .preview {
+                border-radius: $radius;
+                background-color: $background-color;
+                position: relative;
+                .price {
+                    position: absolute;
+                    top: 7px; right: 10px;
+                }
+                img {
+                    width: 225px;
+                }
+
+                .information {
+                    background-color: red;
+                    padding: .3rem;
+                    position: absolute;
+                    bottom: 0;
+                    transition: .5s;
+                    border-top-right-radius: $radius;
+                    border-top-left-radius: $radius;
+                    height: 0; width: 97.5%;
+                    text-align: left;
+                    display: none;
+                    > * {
+                        opacity: 0;
+                        transition: .5s;
+                        margin: 1rem 0;
+                    }
+                }
+            }
+            .preview:hover .information {
+                height: 80%;
+                > * {
+                    opacity: 1;
+                }
+            }
+            .desc {
+                .product-name {
+                    font-size: 2rem;
+                    margin: .75rem 0;
+                }
+                .product-name::first-letter {
+                    color: $bold-color;
+                }
+            }
+        }
+    }
+}

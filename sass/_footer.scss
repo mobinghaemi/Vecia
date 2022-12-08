@@ -1,0 +1,42 @@
+footer {
+    align-items: center;
+    i {
+        font-size: 1.8rem;
+    }
+    .author {
+        img {
+            height: 50px;
+            width: 50px;
+            margin-right: .75rem;
+        }
+        strong {
+            display: inline-block;
+            margin-top: .5rem;
+        }
+    }
+    #nextPage {
+        border: 1px solid rgba(128, 128, 128, 0.2);
+        padding: .3rem;
+    }
+    .pagination {
+        align-items: center;
+        gap: 1rem;
+        > .float {
+            align-items: center;
+            button {
+                background-color: $background-color;
+                border: 1px solid rgba(128, 128, 128, 0.2);
+                width: 30px; height: 30px;
+            }
+            p.current-page {
+                background-color: white;
+                border: 1px solid rgba(128, 128, 128, 0.2);
+                border-radius: $radius;
+                width: 30px; height: 30px;
+                margin: .2rem;
+                // Move To Center
+                @include centre;
+            }
+        }
+    }
+}

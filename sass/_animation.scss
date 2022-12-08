@@ -1,0 +1,140 @@
+.color-wave-anime {
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+  font-size: 1rem;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
+
+/* Typewriter effect 1 */
+@keyframes typing {
+  0.0000% { content: ""}
+  1.1395% { content: "م"}
+  2.2791% { content: "مب"}
+  3.4186% { content: "مبی"}
+  4.5581% { content: "مبین"}
+  5.6977% { content: "مبین "}
+  6.8372% { content: "مبین ق"}
+  7.9767% { content: "مبین قا"}
+  9.1163% { content: "مبین قائ"}
+  10.2558% { content: "مبین قائم"}
+  11.3953% {content: "مبین قائمی" }
+
+  30.0000% { content: "مبین قائمی"}
+  31.1395% { content: "مبین قائم"}
+  32.2791% { content: "میبن قا"}
+  33.4186% { content: "مبین ق"}
+  34.5581% { content: "مبین "}
+  35.6977% { content: "مبین"}
+  36.8372% { content: "مبی"}
+  38.9767% { content: "مب"}
+  39.1163% { content: "م"}
+  40.2558% { content: ""}
+
+  42.7674% { content: ""}
+  43.9070% { content: "ب"}
+  44.0465% { content: "بر"}
+  45.1860% { content: "برن"}
+  46.3256% { content: "برنا"}
+  47.4651% { content: "برنام"}
+  48.6047% { content: "برنامه"}
+  49.4186% { content: "برنامه "}
+  50.2325% { content: "برنامه ن"}
+  51.2325% { content: "برنامه نو"}
+  52.2325% { content: "برنامه نوی"}
+  53.2325% { content: "برنامه نویس"}
+
+  65.7674% { content: "برنامه نویس"}
+  66.9070% { content: "برنامه نوی"}
+  67.0465% { content: "برنامه نو"}
+  68.1860% { content: "برنامه ن"}
+  69.3256% { content: "برنامه "}
+  70.4651% { content: "برنامه"}
+  71.6047% { content: "برنام"}
+  72.4186% { content: "برنا"}
+  73.2325% { content: "برن"}
+  74.2325% { content: "بر"}
+  75.2325% { content: "ب"}
+  76.2325% { content: ""}
+
+  77.7674% { content: ""}
+  78.9070% { content: "ا"}
+  79.0465% { content: "ان"}
+  80.1860% { content: "انس"}
+  81.3256% { content: "انسا"}
+  82.4651% { content: "انسان"}
+
+  89.7674% { content: "انسان"}
+  90.9070% { content: "انسا"}
+  91.0465% { content: "انس"}
+  92.1860% { content: "ان"}
+  93.3256% { content: "ا"}
+  94.4651% { content: ""}
+
+}
+
+// @keyframes blink {
+//   0%, 100% { opacity: 1}
+//   50% { opacity: 0}
+// }
+
+// .typewriter {
+//   --caret: currentcolor;
+// }
+
+.typewriter::before {
+  content: "";
+  animation: typing 13.5s infinite;
+}
+
+// .typewriter::after {
+//   content: "";
+//   border-right: 1px solid var(--caret);
+//   animation: blink 0.5s linear infinite;
+// }
+
+// .typewriter.thick::after {
+//   border-right: 1ch solid var(--caret);
+// }
+
+// .typewriter.nocaret::after {
+//   border-right: 0;
+// }
+
+
+// @media (prefers-reduced-motion) {
+//   .typewriter::after {
+//     animation: none;
+//   }
+  
+//   @keyframes sequencePopup {
+//     0%, 100% { content: "مبین قائمی"}
+//     25% { content: "برنامه نویس"}
+//   }
+
+//   .typewriter::before {
+//     content: "مبین قائمی";
+//     animation: sequencePopup 12s linear infinite;
+//   }
+// }

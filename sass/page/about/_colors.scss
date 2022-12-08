@@ -1,0 +1,35 @@
+.colors {
+    @include centre;
+    gap: 1rem;
+    .color {
+        padding: 1rem;
+        border-radius: $radius;
+        color: $bold-color;
+    }
+    .color:nth-child(1) {
+        background-color: rgb(200, 200, 200)
+    }
+    .color:nth-child(2) {
+        background-color: $text-color;
+    }
+    .color:nth-child(3) {
+        background-color: #F7DF1E;
+    }
+    .color:nth-child(4) {
+        background-color: #FF4e00;
+    }
+    .color:nth-child(5) {
+        background-color: #3481EF;
+    }
+    .color:nth-child(6) {
+        background-color: $bold-color;
+        color: $text-color;
+        
+    }
+}
+
+
+#test {
+    padding: .3rem .1rem;
+    font-size: 1.5rem;
+}

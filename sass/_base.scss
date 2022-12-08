@@ -1,0 +1,138 @@
+// Default Required Styles
+.container {
+    max-width: 1280px;
+    padding: 0 2rem;
+    margin: auto;
+    box-sizing: border-box;
+}
+body , html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    background-color : $background-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    > * {
+        width: 100%;
+    }
+}
+* {
+    font-family: vazir;
+    color: $text-color;
+    font-size: 1rem;
+}
+button {
+    background-color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: $radius;
+    transition: .3s;
+    transition-property: border , color;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    @include centre;
+    * {
+        @include centre;
+    }
+}
+button:hover {
+   border: 1px solid rgba(128, 128, 128, 0.6) !important;
+   color: $bold-color;
+}
+strong {
+    font-weight: bolder;
+    color: $bold-color;
+}
+i , a , b{
+    color: $bold-color;
+}
+label {
+    display: block;
+    padding: .3rem;
+}
+input , button.btn-like-input{
+    width: 100%;
+    border: none;
+    padding: 0.75rem 0.5rem;
+    border-radius: $radius;
+}
+p {
+    line-height: 25px;
+}
+// Useful Classes
+button.btn-like-input {
+    border: 1px solid rgba(128, 128, 128, 0.2) !important;
+    margin-right: .5rem;
+}
+.centre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.horizontal-menu {
+    display: flex;
+    gap: 1rem;
+    li:hover * {
+        cursor: pointer;
+        color: $bold-color;
+    }
+}
+.float {
+    display: flex;
+    justify-content: space-between;
+}
+p.bold {
+    font-size: 2rem;
+    color: $bold-color;
+    font-weight: bold;
+}
+.hidden {
+    display: none;
+}
+#toggle-btn {
+    @include centre;
+    i {
+        font-size: 1.5rem;
+    }
+    label#full {
+        border: 1px solid rgba(128, 128, 128, 0.2);
+        padding: .3rem;
+        border-radius: $radius;
+        position: relative;
+        transition: border .3s;
+        input[type="checkbox"] {
+            display: none;
+        }
+        input[type="checkbox"]:checked + .circle {
+            left: 62px;
+            transform: rotate(360deg);
+        }
+        .uil-moon {
+            color: deeppink;
+        }
+        .uil-sun {
+            color: #F7DF1E;
+        }
+        .circle {
+            padding: .7rem;
+            background-color: $background-color;
+            position: absolute;
+            border-radius: 50%;
+            top: 5.02px; left: 11px;
+            transition: .3s;
+            transition-property: left , transform;
+            border: 1px dashed #222429;
+        }
+    }
+    label#full:hover {
+        cursor: pointer;
+        border: 1px solid rgba(128, 128, 128, 0.6);
+    }
+    label#minimal {
+        display: none;
+        input[type="checkbox"] {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,67 @@
+
+header {
+    p.bold {
+        margin-top: .9rem;
+    }
+    nav {
+        position: sticky;
+        top: 0;
+        background-color: $background-color;
+        align-items: center;
+        a {
+            color: $text-color;
+        }
+        i {
+            font-size: 2rem;
+            padding: .3rem;
+        }
+        #sendMessage {
+            margin: 0 .5rem 0 2rem;
+            padding: .3rem;
+            i {
+                font-size: 1.5rem;
+                padding: 0;
+            }
+        }
+        .social {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+
+            .telegram {
+                background: linear-gradient(#36AEE0,#1C96D1);
+                color: whitesmoke;
+            }
+            .instagram {
+                background: #f09433; 
+                background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+                background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+                background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+                color: whitesmoke;
+            }
+            
+            svg {
+                border-radius: $radius;
+                padding: .3rem;
+                box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.2);
+            }
+        }
+        ul li {
+            padding: .3rem;
+            i {
+                font-size: 1rem;
+            }
+        }
+        #openMobileMenu {
+            display: none;
+        }
+    }
+    div {
+        text-align: center;
+        p.description {
+            margin-top: 1rem;
+            line-height: 22px;
+        }
+    }
+}

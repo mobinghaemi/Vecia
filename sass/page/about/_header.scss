@@ -1,0 +1,22 @@
+header.about {
+    i {
+        font-size: 2rem;
+    }
+    p {
+        text-align: right;
+        strong {
+            font-size: 2rem;
+        }
+    }
+    #backBtn {
+        position: sticky;
+        top: 5px;
+    }
+    .author {
+        @include centre;
+        img {
+            width: 250px;
+        }
+    }
+}
+

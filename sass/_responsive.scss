@@ -1,0 +1,110 @@
+// Small Laptop
+@media screen and (max-width : 1024px) {
+    header nav {
+        padding: .5rem;
+        ul {
+            gap: 0 !important;
+        }
+        #sendMessage {
+            margin: 0 .25rem 0 1rem;
+        }
+    }
+    #searchBox {
+        width: 70% !important;
+    }
+    #toggle-btn {
+        label#full {
+            display: none;
+        }
+        label#minimal {
+            display: block;
+        }
+    }
+}
+// Tablet
+@media screen and (max-width : 768px) {
+    .yield {
+        grid-template-columns: repeat(2 , 1fr) !important;
+    }
+    footer .author img {
+        display: none;
+    }
+    nav {
+        #openMobileMenu {
+            display: block !important;
+        }
+        .mini-hide {
+            display: none;
+        }
+        .horizontal-menu {
+            background-color: $background-color;
+            flex-direction: column;
+            position: fixed;
+            top: 0; right: 0;
+            z-index: 10;
+            padding: .3rem;
+            height: 100%;
+            width: 40%;
+            gap: 1rem !important;
+
+            border-bottom-left-radius: $radius;
+            border-top-left-radius: $radius;
+
+            display: none;
+            li {
+                background-color: white;
+                padding: 1rem;
+                border-radius: $radius;
+            }
+        }
+    }
+}
+// Smaller Tablet 
+@media screen and (max-width : 600px) {
+    footer .author {
+        display: none;
+    }
+    .yield {
+        grid-template-columns: repeat(1 , 1fr) !important;
+    }
+    #searchBox {
+        width: 90% !important;
+    }
+    .bold {
+        line-height: 42px;
+    }
+    div.filter {
+        .products-type {
+            gap: .5rem;
+            li {
+                font-size: .9rem;
+            }
+        }
+        i {
+            font-size: 1.2rem !important;
+        }
+    }
+}
+// Large Phone 
+@media screen and (max-width : 425px) {
+    .mini-hide {
+        display: none;
+    }
+    #toggle-btn {
+        display: none;
+    }
+}
+
+// Meduim Phone 
+@media screen and (max-width : 425px) {
+    header .bold {
+        font-size: 1.5rem;
+    }
+    footer.float {
+        padding-top: .5rem;
+        justify-content: center;
+        #nextPage {
+            display: none;
+        }
+    }
+}
