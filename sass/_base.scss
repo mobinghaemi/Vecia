@@ -24,8 +24,8 @@ body {
     font-size: 1rem;
 }
 button {
-    background-color: white;
     cursor: pointer;
+    background-color: white;
     border: none;
     border-radius: $radius;
     transition: .3s;
@@ -36,15 +36,15 @@ button {
         @include centre;
     }
 }
-button:hover {
+button:hover , button.btn-like-input:hover {
    border: 1px solid rgba(128, 128, 128, 0.6) !important;
    color: $bold-color;
+   * {color: $bold-color}
 }
 strong {
     font-weight: bolder;
-    color: $bold-color;
 }
-i , a , b{
+i , a , b , strong{
     color: $bold-color;
 }
 label {
@@ -73,6 +73,8 @@ button.btn-like-input {
 .horizontal-menu {
     display: flex;
     gap: 1rem;
+}
+body:not(.dark) .horizontal-menu {
     li:hover * {
         cursor: pointer;
         color: $bold-color;

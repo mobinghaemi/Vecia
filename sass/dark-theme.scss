@@ -1,0 +1,41 @@
+.dark , .dark nav {
+    background-color: $bold-color !important;
+}
+.dark {
+    ul li {
+        color: $background-color !important;
+    }
+    i , b , a, strong{
+        color: $background-color;
+    }
+    li a {
+        color: $text-color;
+    }
+    nav ul li:hover {
+        cursor: pointer;
+        * {
+            color: white !important;
+        }
+    }
+    button , input {
+        background-color: #333 !important;
+    }
+    button:hover , button.btn-like-input:hover  {
+        color: white;
+        * {
+            color: white !important;
+        }
+    }
+    .yield .card {
+        background-color: #333 !important;
+        .preview {
+            background-color: $bold-color !important;
+        }
+    }
+    .modal {
+        background-color: $bold-color;
+    }
+    .bold {
+        color: white;
+    }
+}

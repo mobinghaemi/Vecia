@@ -83,8 +83,8 @@ body > * {
 }
 
 button {
-  background-color: white;
   cursor: pointer;
+  background-color: white;
   border: none;
   border-radius: 10px;
   transition: 0.3s;
@@ -100,17 +100,19 @@ button * {
   align-items: center;
 }
 
-button:hover {
+button:hover, button.btn-like-input:hover {
   border: 1px solid rgba(128, 128, 128, 0.6) !important;
+  color: #222429;
+}
+button:hover *, button.btn-like-input:hover * {
   color: #222429;
 }
 
 strong {
   font-weight: bolder;
-  color: #222429;
 }
 
-i, a, b {
+i, a, b, strong {
   color: #222429;
 }
 
@@ -145,7 +147,8 @@ button.btn-like-input {
   display: flex;
   gap: 1rem;
 }
-.horizontal-menu li:hover * {
+
+body:not(.dark) .horizontal-menu li:hover * {
   cursor: pointer;
   color: #222429;
 }
@@ -216,7 +219,7 @@ p.bold {
 }
 
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -227,7 +230,7 @@ p.bold {
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -260,6 +263,14 @@ p.bold {
   margin-top: 1.5rem;
 }
 
+@media screen and (max-width: 767px) {
+  .modal {
+    padding: 1.5rem 3rem;
+  }
+  .modal p.bold {
+    font-size: 1.5rem;
+  }
+}
 .color-wave-anime {
   text-transform: uppercase;
   background-image: linear-gradient(-225deg, #231557 0%, #44107a 29%, #ff1361 67%, #fff800 100%);
@@ -852,6 +863,46 @@ footer.about p {
   .colors {
     gap: 0.5rem;
   }
+}
+.dark, .dark nav {
+  background-color: #222429 !important;
+}
+
+.dark ul li {
+  color: #F5F6F6 !important;
+}
+.dark i, .dark b, .dark a, .dark strong {
+  color: #F5F6F6;
+}
+.dark li a {
+  color: #979797;
+}
+.dark nav ul li:hover {
+  cursor: pointer;
+}
+.dark nav ul li:hover * {
+  color: white !important;
+}
+.dark button, .dark input {
+  background-color: #333 !important;
+}
+.dark button:hover, .dark button.btn-like-input:hover {
+  color: white;
+}
+.dark button:hover *, .dark button.btn-like-input:hover * {
+  color: white !important;
+}
+.dark .yield .card {
+  background-color: #333 !important;
+}
+.dark .yield .card .preview {
+  background-color: #222429 !important;
+}
+.dark .modal {
+  background-color: #222429;
+}
+.dark .bold {
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */
