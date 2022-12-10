@@ -8,17 +8,18 @@ const killModalBtn = $('#killModal')
 const overlay = $('.overlay');
 const modal = $('.modal');
 
+const backBtn = document.querySelectorAll('#backBtn');
 
 // Funcs 
 
 // Load Saved Theme 
 onload = () => {
-    const theme = localStorage.getItem('theme');
-    theme === "dark" ? body.classList.add('dark') : body.classList.remove('dark');
+    const {color , mode} = JSON.parse(localStorage.getItem('theme'))
+    color === "dark" ? body.classList.add('dark') : body.classList.remove('dark');
+    mode && toggleTheme && toggleTheme.checked
 }
 // Func : Kill Every Open Window | Feature Like Mobile Menu | Modal ...
-const killEverything = e => {
-    console.log(e);
+const killEverything = _ => {
     overlay.classList.add('hidden')
     modal.classList.add('hidden')
 }
@@ -34,17 +35,21 @@ const openModal = _ => {
 toggleTheme && toggleTheme.addEventListener('change' , e => {
     if (e.target.checked) {
         body.classList.add('dark')
-        localStorage.setItem('theme' , 'dark')
+        localStorage.setItem('theme' , JSON.stringify({color : 'dark' , mode : true}))
     } else {
         body.classList.remove('dark')
-        localStorage.setItem('theme' , 'light')
+        localStorage.setItem('theme' , JSON.stringify({color : 'light' , mode : false}))
     }
 })
 // Open SendMessage Modal & Enable Overlay!
-sendMessageBtn.addEventListener('click' , openModal)
+sendMessageBtn && sendMessageBtn.addEventListener('click' , openModal)
 // After Click on Overlay : Modal , Menu , ... Closed
-overlay.addEventListener('click' , killEverything);
+overlay && overlay.addEventListener('click' , killEverything);
 // IF Press Escape Key : Close All
-document.addEventListener('keydown',e => e.key === 'Escape' && killEverything);
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') killEverything()
+});
 // After Click on the close modal btn
-killModalBtn.addEventListener('click' , killEverything)
+killModalBtn && killModalBtn.addEventListener('click' , killEverything)
+
+backBtn.forEach(index => index.addEventListener('click' , _ => history.back()))

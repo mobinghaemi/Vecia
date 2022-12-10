@@ -480,6 +480,9 @@ header nav {
   align-items: center;
 }
 header nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #979797;
 }
 header nav i {
