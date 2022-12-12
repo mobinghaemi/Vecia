@@ -4,10 +4,13 @@ const previousProductShowBtn = $("#previousProductShow");
 const nextProductShowBtn = $("#nextProductShow");
 // Div Show
 const yieldEl = $(".yield");
+// SearchBox
+const searchForm = $('#searchForm')
+const searchInput = $('#searchInput')
 // What Show Products?
 const paginationState = {
-  startPostion: 0,
-  endPostion: 3,
+  page: 0,
+  limit: 3,
 };
 // Current (Active) Page :)
 let currentPage = 1;
@@ -51,7 +54,7 @@ const products = [
   },
 ];
 // Default Products
-let newProducts = products.slice(paginationState.startPostion , paginationState.endPostion);
+let newProducts = products.slice(paginationState.page * paginationState.limit , (paginationState.page + 1) * paginationState.limit);
 
 // Funcs
 
@@ -90,26 +93,28 @@ function appendNewProducts (newProducts) {
   })
 }
 // Handle Back , Next Button
-const getPage = angle => {
+const getPage = (angle , filterProducts) => {
+  const {page , limit} = paginationState;
+
   if (angle === 'right') {
-    if (newProducts.length < 3) return false;
-    // Increase Pagination State
-    paginationState.startPostion += 3;
-    paginationState.endPostion += 3;
-    // Increase Current Page Number
+    if (page > 1) return false
+    paginationState.page++;
+    // Edit Current Page
     currentPage++
-    pageCurrentEl.textContent = currentPage;
   } else if (angle === 'left') {
-    if (paginationState.startPostion === 0) return false;
-    // Decrease Pagination State
-    paginationState.startPostion -= 3;
-    paginationState.endPostion -= 3;
-    // Decrease Current Page Number
+    if (page * limit < newProducts.length) return false
+    paginationState.page--;
+    // Edit Current Page
     currentPage--
-    pageCurrentEl.textContent = currentPage;
+  } else if ('nothing' ){
+    newProducts = filterProducts.slice(paginationState.page * paginationState.limit , (paginationState.page + 1) * paginationState.limit)
+    appendNewProducts(newProducts);
+    return false
   }
-  // Create New Products
-  newProducts = products.slice(paginationState.startPostion , paginationState.endPostion)
+  // Show The User
+  pageCurrentEl.textContent = currentPage;
+  // // Create New Products
+  newProducts = products.slice(paginationState.page * paginationState.limit , (paginationState.page + 1) * paginationState.limit)
   // Append To the Html
   appendNewProducts(newProducts);
 }
@@ -121,3 +126,16 @@ appendNewProducts(newProducts)
 nextPageBtn.addEventListener("click", _ => getPage('right'));
 nextProductShowBtn.addEventListener("click", _ => getPage('right'));
 previousProductShowBtn.addEventListener("click", _ => getPage('left'));
+
+searchForm.addEventListener('submit' , e => {
+  e.preventDefault();
+  // Get User Search Value
+  const searchValue = searchInput.value;
+  // Create New Products With User Search
+  const filterProducts = products.filter(index => {
+    const {price , imgsrc , productName} = index;
+    return productName.includes(searchValue)
+  })
+  // Slice
+  getPage('nothing' , filterProducts)
+})
