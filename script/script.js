@@ -16,7 +16,7 @@ const backBtn = document.querySelectorAll('#backBtn');
 onload = () => {
     const {color , mode} = JSON.parse(localStorage.getItem('theme'))
     color === "dark" ? body.classList.add('dark') : body.classList.remove('dark');
-    mode && toggleTheme && toggleTheme.checked
+    toggleTheme && mode && (toggleTheme.checked = true)
 }
 // Func : Kill Every Open Window | Feature Like Mobile Menu | Modal ...
 const killEverything = _ => {

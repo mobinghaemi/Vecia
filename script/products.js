@@ -1,10 +1,16 @@
+// Pagination Buttons
+const nextPageBtn = $("#nextPage");
+const previousProductShowBtn = $("#previousProductShow");
+const nextProductShowBtn = $("#nextProductShow");
+// Div Show
 const yieldEl = $(".yield");
 // What Show Products?
 const paginationState = {
-  startPostion: -3,
-  endPostion: 0,
+  startPostion: 0,
+  endPostion: 3,
 };
-let pageCurrentNumber = 0;
+// Current (Active) Page :)
+let currentPage = 1;
 const pageCurrentEl = $(".current-page");
 // Products
 const products = [
@@ -33,30 +39,29 @@ const products = [
     imgsrc: "tumbler-digital.gif",
     productName: "لیوان الکی",
   },
+  {
+    price: "ویژه",
+    imgsrc: "tumbler-digital.gif",
+    productName: "لیوان الکی",
+  },
+  {
+    price: "ویژه",
+    imgsrc: "tumbler-digital.gif",
+    productName: "لیوان خیاری",
+  },
 ];
+// Default Products
+let newProducts = products.slice(paginationState.startPostion , paginationState.endPostion);
 
-const nextPageBtn = $("#nextPage");
-const previousProductShowBtn = $("#previousProductShow");
-const nextProductShowBtn = $("#nextProductShow");
+// Funcs
 
-// Append All Products To the HTML And Show 3 Product
-const innerProducts = (_) => {
-  // Distructing
-  let { startPostion: start, endPostion: end } = paginationState;
-  start += 3;
-  end += 3;
-  paginationState.startPostion = start;
-  paginationState.endPostion = end;
-  // Save Updated Array
-  const newProducts = products.slice(start, end);
-  // If No More Products : User Not Allowed Showing Next Page
-  if (newProducts.length === 0) return false;
-  // Clear Previous Product
-  yieldEl.innerHTML = ``;
-  // Add New Prodcuts
-  newProducts.map((index) => {
-    // Get Product Data
-    const { price, imgsrc, productName } = index;
+// Append 3 Products
+function appendNewProducts (newProducts) {
+  // Clear
+  yieldEl.innerHTML = ''
+  // Add New Products
+  newProducts.map(index => {
+    const {price , imgsrc , productName} = index;
     yieldEl.innerHTML += `
         <div class="card" data-price="free">
             <div class="preview">
@@ -81,16 +86,38 @@ const innerProducts = (_) => {
                 </a>
             </div>
         </div>
-        `;
-  });
+      `;
+  })
+}
+// Handle Back , Next Button
+const getPage = angle => {
+  if (angle === 'right') {
+    if (newProducts.length < 3) return false;
+    // Increase Pagination State
+    paginationState.startPostion += 3;
+    paginationState.endPostion += 3;
+    // Increase Current Page Number
+    currentPage++
+    pageCurrentEl.textContent = currentPage;
+  } else if (angle === 'left') {
+    if (paginationState.startPostion === 0) return false;
+    // Decrease Pagination State
+    paginationState.startPostion -= 3;
+    paginationState.endPostion -= 3;
+    // Decrease Current Page Number
+    currentPage--
+    pageCurrentEl.textContent = currentPage;
+  }
+  // Create New Products
+  newProducts = products.slice(paginationState.startPostion , paginationState.endPostion)
+  // Append To the Html
+  appendNewProducts(newProducts);
+}
 
-  pageCurrentNumber++;
-  pageCurrentEl.textContent = pageCurrentNumber;
+// Create Items By Default
+appendNewProducts(newProducts)
 
-  console.log(paginationState);
-};
-innerProducts();
-
-nextPageBtn.addEventListener("click", innerProducts);
-nextProductShowBtn.addEventListener("click", innerProducts);
-previousProductShowBtn.addEventListener("click", () => {});
+// Events
+nextPageBtn.addEventListener("click", _ => getPage('right'));
+nextProductShowBtn.addEventListener("click", _ => getPage('right'));
+previousProductShowBtn.addEventListener("click", _ => getPage('left'));
