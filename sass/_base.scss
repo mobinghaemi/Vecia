@@ -60,6 +60,12 @@ input , button.btn-like-input{
 p {
     line-height: 25px;
 }
+img , .price , label {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
 // Useful Classes
 button.btn-like-input {
     border: 1px solid rgba(128, 128, 128, 0.2) !important;

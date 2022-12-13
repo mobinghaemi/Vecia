@@ -4,10 +4,16 @@ section.products {
         padding-top: 0.5rem;
         margin: auto;
         position: relative;
-        .search-ic {
+        button {
+            all: unset;
             position: absolute;
-            left: 12px;
-            top: 33.8%;
+            left: 12px; top: 33.8%;
+        }
+        button:hover {
+            border: none !important;
+            cursor: pointer;
+        }
+        .search-ic {
             font-size: 1.5rem;
         }
     }
@@ -17,6 +23,7 @@ section.products {
             align-items: center;
             li {
                 color: $bold-color;
+                cursor: pointer;
             }
             li.premium {
                 color: orangered;

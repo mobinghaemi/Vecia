@@ -1,4 +1,4 @@
-const $ = Q => document.querySelector(Q);
+import { $ } from "./utils.js";
 
 const body = $('body')
 const toggleTheme = $('#toggle-theme');
@@ -9,6 +9,9 @@ const overlay = $('.overlay');
 const modal = $('.modal');
 
 const backBtn = document.querySelectorAll('#backBtn');
+
+const openMobileMenuBtn = $('#openMobileMenu');
+const horizontal = $('.horizontal-menu');
 
 // Funcs 
 
@@ -53,3 +56,7 @@ document.addEventListener('keydown', e => {
 killModalBtn && killModalBtn.addEventListener('click' , killEverything)
 
 backBtn.forEach(index => index.addEventListener('click' , _ => history.back()))
+
+openMobileMenuBtn.addEventListener('click' , () => {
+    horizontal.style.display = 'block'
+})

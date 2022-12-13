@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://idpay.ir/protect-word">
+                    <a target="_blank" href="https://idpay.ir/protect-word">
                         <i class="uil uil-coffee"></i>
                         برام ی قهوه بخر
                     </a>
@@ -95,9 +95,9 @@
     </header>
 
     <section class="container products centre">
-        <div id="searchBox">
-            <i class="uil uil-search search-ic"></i>
-            <form action="" id="searchForm">
+        <form action="" id="searchForm">
+                <div id="searchBox">
+                <button type="submit"><i class="uil uil-search search-ic"></i></button>
                 <input id="searchInput" type="search" placeholder="جستجو">
             </form>
         </div>
@@ -106,8 +106,8 @@
                 <li id="newest">جدید <span class="mini-hide">ترین</span></li>
                 <li id="popular">محبوب <span class="mini-hide">ترین</span></li>
                 <li class="pipe"> | </li>
-                <li class="premium">ویژه</li>
-                <li class="free">رایگان</li>
+                <li id="premium">ویژه</li>
+                <li id="free">رایگان</li>
             </ul>
             <div>
                 <i class="uil uil-bookmark"></i>
@@ -145,7 +145,8 @@
         </div>
     </footer>
 
-    <script src="script/script.js"></script>  
-    <script src="script/products.js"></script>
+    <script type="module" src="script/utils.js"></script>
+    <script type="module" src="script/script.js"></script>  
+    <script type="module" src="script/products.js"></script>
 </body>
 </html>

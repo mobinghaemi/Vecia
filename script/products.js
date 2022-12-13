@@ -1,3 +1,4 @@
+import { $ } from "./utils.js";
 // Pagination Buttons
 const nextPageBtn = $("#nextPage");
 const previousProductShowBtn = $("#previousProductShow");
@@ -7,6 +8,11 @@ const yieldEl = $(".yield");
 // SearchBox
 const searchForm = $('#searchForm')
 const searchInput = $('#searchInput')
+// Find Menu Btn
+const newestProductBtn = $('#newest');
+const popularProductBtn = $('#popular');
+const premiumProductBtn = $('#premium');
+const freeProductBtn = $('#free');
 // What Show Products?
 const paginationState = {
   page: 0,
@@ -18,37 +24,37 @@ const pageCurrentEl = $(".current-page");
 // Products
 const products = [
   {
-    price: "ویژه",
+    price: ["ویژه" , 'premium'],
     imgsrc: "tumbler-dead.gif",
     productName: "لیوان مرده",
   },
   {
-    price: "رایگان",
+    price: ["رایگان" , 'free'],
     imgsrc: "tumbler-ride.gif",
     productName: "لیوان درود",
   },
   {
-    price: "ویژه",
+    price: ["ویژه" , 'premium'],
     imgsrc: "tumbler-digital.gif",
     productName: "لیوان سایبری",
   },
   {
-    price: "ویژه",
+    price: ["ویژه" , 'premium'],
     imgsrc: "tumbler-digital.gif",
     productName: "لیوان موز",
   },
   {
-    price: "ویژه",
+    price: ["ویژه" , 'premium'],
     imgsrc: "tumbler-digital.gif",
     productName: "لیوان الکی",
   },
   {
-    price: "ویژه",
+    price: ["ویژه" , 'premium'],
     imgsrc: "tumbler-digital.gif",
     productName: "لیوان الکی",
   },
   {
-    price: "ویژه",
+    price: ["ویژه" , 'premium'],
     imgsrc: "tumbler-digital.gif",
     productName: "لیوان خیاری",
   },
@@ -64,9 +70,9 @@ function appendNewProducts (newProducts) {
   yieldEl.innerHTML = ''
   // Add New Products
   newProducts.map(index => {
-    const {price , imgsrc , productName} = index;
+    const {price : [price , type] , imgsrc , productName} = index;
     yieldEl.innerHTML += `
-        <div class="card" data-price="free">
+        <div class="card" data-price="${type}">
             <div class="preview">
                 <div class="price">
                     <i class="uil uil-unlock-alt"></i>
@@ -119,10 +125,21 @@ const getPage = (angle , filterProducts) => {
   appendNewProducts(newProducts);
 }
 
+const filterByPriceType = argType => {
+  // Create New Products With User Search
+  const filterProducts = products.filter(index => {
+    const {price : [price , type]} = index;
+    return type === argType
+  })
+
+  getPage('center' , filterProducts)
+}
+
 // Create Items By Default
 appendNewProducts(newProducts)
 
 // Events
+
 nextPageBtn.addEventListener("click", _ => getPage('right'));
 nextProductShowBtn.addEventListener("click", _ => getPage('right'));
 previousProductShowBtn.addEventListener("click", _ => getPage('left'));
@@ -137,5 +154,17 @@ searchForm.addEventListener('submit' , e => {
     return productName.includes(searchValue)
   })
   // Slice
-  getPage('nothing' , filterProducts)
+  getPage('center' , filterProducts)
+})
+
+
+freeProductBtn.addEventListener('click' , _ => filterByPriceType('free'))
+
+premiumProductBtn.addEventListener('click' , _ => filterByPriceType('premium'))
+
+newestProductBtn.addEventListener('click' , () => {
+  getPage('center' , products)
+})
+popularProductBtn.addEventListener('click' , () => {
+  getPage('center' , products.reverse())
 })
