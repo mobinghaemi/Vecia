@@ -1,4 +1,4 @@
-.overlay {
+.overlay , .mobile-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -44,11 +44,60 @@
     }
 }
 
+
+.modal.download {
+    gap: 1rem;
+    img {
+        width: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: $radius;
+    }
+    .left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            font-size: 1.5rem;
+        }
+        .btns {
+            width: 100%;
+            button {
+                padding: 1rem;
+                width: 100%;
+            }
+            #continueDownload {
+                border: 1px solid rgba(0, 255, 0, 0.4);
+                background-color: rgba(0, 255, 0, 0.2) !important;
+            }
+            #cancelDownload {
+                border: 1px solid rgba(255, 0, 0, 0.4);
+                background-color: rgba(255, 0, 0, 0.2) !important;
+            }
+        }
+    }
+}
+
+
 @media screen and (max-width : 767px) {
     .modal {
         padding: 1.5rem 3rem;
         p.bold {
             font-size: 1.5rem;
+        }
+    }
+    .modal.download {
+        padding: 1.5rem 0;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            width: 75%;
+        }
+        p {
+            font-size: 1rem !important;
         }
     }
 }

@@ -11,6 +11,8 @@
 <body class="light">
     <div class="container">
         <div class="overlay hidden"></div>
+        <div class="mobile-overlay hidden"></div>
+        <!-- Send Message Modal -->
         <div class="modal hidden">
             <i class="uil uil-times" id="killModal"></i>
             <p class="bold">ارسال پیام
@@ -30,10 +32,27 @@
             </form>
         </div>
     </div>
+    <!-- Download Modal -->
+    <div class="container">
+        <div class="modal download float hidden">
+            <img src="assets/picture/tumbler-digital.gif" alt="">
+            <div class="left">
+                <p>آیا از دانلود خود اطمینان دارید؟</p>
+                <div class="btns">
+                    <button id="continueDownload">دانلود</button>
+                    <button id="cancelDownload">لغو</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <header class="container">
         <nav class="float">
             <button id="openMobileMenu"><i class="uil uil-bars"></i></button>
             <ul class="horizontal-menu">
+                <div class="float mobile-name">
+                    <strong>مبین قائمی</strong>
+                    <i class="uil uil-times" id="closeMenuMobile"></i>
+                </div>
                 <li>
                     <a href="#">
                         <i class="uil uil-home"></i>
@@ -52,6 +71,13 @@
                         برام ی قهوه بخر
                     </a>
                 </li>
+                <li id="mobileEditTheme">
+                    <label >
+                        <input type="checkbox">
+                        <i class="uil uil-sun"></i>
+                        حالت روشن
+                    </label>
+                </li>
             </ul>
             <div class="float">
                 <div id="toggle-btn">
@@ -61,10 +87,7 @@
                         <input type="checkbox" id="toggle-theme">
                         <div class="circle"></div>
                     </label>
-                    <label for="" id="minimal">
-                        <i class="uil uil-sun"></i>
-                        <input type="checkbox" id="toggle-theme">
-                    </label>
+
                 </div>
                 <button id="sendMessage">
                     <i class="uil uil-message"></i>

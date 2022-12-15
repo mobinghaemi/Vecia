@@ -60,25 +60,27 @@ section.products {
                 }
 
                 .information {
-                    background-color: red;
+                    background-color: rgb(230, 230, 230);
                     padding: .3rem;
                     position: absolute;
-                    bottom: 0;
+                    bottom: 0; left: 0;
                     transition: .5s;
-                    border-top-right-radius: $radius;
-                    border-top-left-radius: $radius;
-                    height: 0; width: 97.5%;
-                    text-align: left;
-                    display: none;
+                    border-radius: $radius;
+                    width: 97.5%; height: 0;
+                    overflow: hidden;
+                    text-align: right;
+                    p {
+                        padding: .4rem;
+                    }
                     > * {
                         opacity: 0;
                         transition: .5s;
-                        margin: 1rem 0;
                     }
                 }
             }
             .preview:hover .information {
                 height: 80%;
+                // top: 50px;
                 > * {
                     opacity: 1;
                 }

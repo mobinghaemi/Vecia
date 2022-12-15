@@ -1,17 +1,19 @@
-import { $ } from "./utils.js";
+import { $ , overlay , killEverything } from "./utils.js";
 
 const body = $('body')
 const toggleTheme = $('#toggle-theme');
+const mobileEditTheme = $('#mobileEditTheme');
 
 const sendMessageBtn = $('#sendMessage');
 const killModalBtn = $('#killModal')
-const overlay = $('.overlay');
 const modal = $('.modal');
 
 const backBtn = document.querySelectorAll('#backBtn');
 
 const openMobileMenuBtn = $('#openMobileMenu');
-const horizontal = $('.horizontal-menu');
+const mobileMenu = $('.horizontal-menu');
+const closeMenuMobileBtn = $('#closeMenuMobile')
+const mobileOverlay = $('.mobile-overlay')
 
 // Funcs 
 
@@ -21,21 +23,13 @@ onload = () => {
     color === "dark" ? body.classList.add('dark') : body.classList.remove('dark');
     toggleTheme && mode && (toggleTheme.checked = true)
 }
-// Func : Kill Every Open Window | Feature Like Mobile Menu | Modal ...
-const killEverything = _ => {
-    overlay.classList.add('hidden')
-    modal.classList.add('hidden')
-}
 // Open Modal & Enable Overlay
 const openModal = _ => {
     overlay.classList.remove('hidden')
     modal.classList.remove('hidden')
 }
-
-// Listeners
-
-// Edit Theme With Toggle Btn
-toggleTheme && toggleTheme.addEventListener('change' , e => {
+// Edit Theme
+const switchTheme = e => {
     if (e.target.checked) {
         body.classList.add('dark')
         localStorage.setItem('theme' , JSON.stringify({color : 'dark' , mode : true}))
@@ -43,7 +37,18 @@ toggleTheme && toggleTheme.addEventListener('change' , e => {
         body.classList.remove('dark')
         localStorage.setItem('theme' , JSON.stringify({color : 'light' , mode : false}))
     }
-})
+}
+// Close M Menu & M Overlay
+const closeMobileMenu = () => {
+    mobileMenu.style.width = '0%'
+    mobileOverlay.classList.add('hidden')
+}
+
+// Listeners
+
+// Edit Theme With Toggle Btn
+toggleTheme && toggleTheme.addEventListener('change' , switchTheme)
+mobileEditTheme && mobileEditTheme.addEventListener('change' , switchTheme)
 // Open SendMessage Modal & Enable Overlay!
 sendMessageBtn && sendMessageBtn.addEventListener('click' , openModal)
 // After Click on Overlay : Modal , Menu , ... Closed
@@ -57,6 +62,9 @@ killModalBtn && killModalBtn.addEventListener('click' , killEverything)
 
 backBtn.forEach(index => index.addEventListener('click' , _ => history.back()))
 
-openMobileMenuBtn.addEventListener('click' , () => {
-    horizontal.style.display = 'block'
+openMobileMenuBtn && openMobileMenuBtn.addEventListener('click' , () => {
+    mobileOverlay.classList.remove('hidden')
+    mobileMenu.style.width = '60%'
 })
+closeMenuMobileBtn && closeMenuMobileBtn.addEventListener('click' , closeMobileMenu)
+mobileOverlay && mobileOverlay.addEventListener('click' , closeMobileMenu)

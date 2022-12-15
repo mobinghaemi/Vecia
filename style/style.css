@@ -225,7 +225,7 @@ p.bold {
   display: none;
 }
 
-.overlay {
+.overlay, .mobile-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -270,12 +270,57 @@ p.bold {
   margin-top: 1.5rem;
 }
 
+.modal.download {
+  gap: 1rem;
+}
+.modal.download img {
+  width: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+.modal.download .left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal.download .left p {
+  font-size: 1.5rem;
+}
+.modal.download .left .btns {
+  width: 100%;
+}
+.modal.download .left .btns button {
+  padding: 1rem;
+  width: 100%;
+}
+.modal.download .left .btns #continueDownload {
+  border: 1px solid rgba(0, 255, 0, 0.4);
+  background-color: rgba(0, 255, 0, 0.2) !important;
+}
+.modal.download .left .btns #cancelDownload {
+  border: 1px solid rgba(255, 0, 0, 0.4);
+  background-color: rgba(255, 0, 0, 0.2) !important;
+}
+
 @media screen and (max-width: 767px) {
   .modal {
     padding: 1.5rem 3rem;
   }
   .modal p.bold {
     font-size: 1.5rem;
+  }
+  .modal.download {
+    padding: 1.5rem 0;
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal.download img {
+    width: 75%;
+  }
+  .modal.download p {
+    font-size: 1rem !important;
   }
 }
 .color-wave-anime {
@@ -481,10 +526,13 @@ header p.bold {
   margin-top: 0.9rem;
 }
 header nav {
-  position: sticky;
   top: 0;
   background-color: #F5F6F6;
   align-items: center;
+}
+header nav .mobile-name, header nav #mobileEditTheme, header nav #mobileEditTheme input {
+  align-items: center;
+  display: none;
 }
 header nav a {
   display: flex;
@@ -607,22 +655,24 @@ section.products .yield div.card .preview img {
   width: 225px;
 }
 section.products .yield div.card .preview .information {
-  background-color: red;
+  background-color: rgb(230, 230, 230);
   padding: 0.3rem;
   position: absolute;
   bottom: 0;
+  left: 0;
   transition: 0.5s;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  height: 0;
+  border-radius: 10px;
   width: 97.5%;
-  text-align: left;
-  display: none;
+  height: 0;
+  overflow: hidden;
+  text-align: right;
+}
+section.products .yield div.card .preview .information p {
+  padding: 0.4rem;
 }
 section.products .yield div.card .preview .information > * {
   opacity: 0;
   transition: 0.5s;
-  margin: 1rem 0;
 }
 section.products .yield div.card .preview:hover .information {
   height: 80%;
@@ -698,9 +748,6 @@ footer .pagination > .float p.current-page {
   #toggle-btn label#full {
     display: none;
   }
-  #toggle-btn label#minimal {
-    display: block;
-  }
 }
 @media screen and (max-width: 768px) {
   .yield {
@@ -716,6 +763,7 @@ footer .pagination > .float p.current-page {
     display: none;
   }
   nav .horizontal-menu {
+    transition: 0.25s;
     background-color: #F5F6F6;
     flex-direction: column;
     position: fixed;
@@ -724,16 +772,35 @@ footer .pagination > .float p.current-page {
     z-index: 10;
     padding: 0.3rem;
     height: 100%;
-    width: 40%;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
     gap: 1rem !important;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
-    display: none;
+    border-radius: 10px;
+  }
+  nav .horizontal-menu .mobile-name {
+    display: flex;
+  }
+  nav .horizontal-menu .mobile-name strong {
+    margin-right: 0.3rem;
+  }
+  nav .horizontal-menu #mobileEditTheme {
+    display: flex;
   }
   nav .horizontal-menu li {
     background-color: white;
-    padding: 1rem;
+    margin: 0.5rem 0.3rem;
     border-radius: 10px;
+  }
+  nav .horizontal-menu li a, nav .horizontal-menu li label {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0.3rem;
+    width: 100%;
+  }
+  .dark li {
+    background-color: #333 !important;
   }
 }
 @media screen and (max-width: 600px) {
@@ -915,6 +982,12 @@ footer.about p {
 }
 .dark .yield .card .preview {
   background-color: #222429 !important;
+}
+.dark .yield .card .preview .information {
+  background-color: #444 !important;
+}
+.dark .yield .card .product-name::first-letter {
+  color: white !important;
 }
 .dark .modal {
   background-color: #222429;

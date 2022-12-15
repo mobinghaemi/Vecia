@@ -1,4 +1,4 @@
-import { $ } from "./utils.js";
+import { $ , products , overlay , killEverything} from "./utils.js";
 // Pagination Buttons
 const nextPageBtn = $("#nextPage");
 const previousProductShowBtn = $("#previousProductShow");
@@ -13,6 +13,11 @@ const newestProductBtn = $('#newest');
 const popularProductBtn = $('#popular');
 const premiumProductBtn = $('#premium');
 const freeProductBtn = $('#free');
+// Download Modal
+const downloadModal = $('.modal.download');
+const downloadModalImage = downloadModal.querySelector('img')
+// Download Products Links
+let downloadEl;
 // What Show Products?
 const paginationState = {
   page: 0,
@@ -21,44 +26,6 @@ const paginationState = {
 // Current (Active) Page :)
 let currentPage = 1;
 const pageCurrentEl = $(".current-page");
-// Products
-const products = [
-  {
-    price: ["ویژه" , 'premium'],
-    imgsrc: "tumbler-dead.gif",
-    productName: "لیوان مرده",
-  },
-  {
-    price: ["رایگان" , 'free'],
-    imgsrc: "tumbler-ride.gif",
-    productName: "لیوان درود",
-  },
-  {
-    price: ["ویژه" , 'premium'],
-    imgsrc: "tumbler-digital.gif",
-    productName: "لیوان سایبری",
-  },
-  {
-    price: ["ویژه" , 'premium'],
-    imgsrc: "tumbler-digital.gif",
-    productName: "لیوان موز",
-  },
-  {
-    price: ["ویژه" , 'premium'],
-    imgsrc: "tumbler-digital.gif",
-    productName: "لیوان الکی",
-  },
-  {
-    price: ["ویژه" , 'premium'],
-    imgsrc: "tumbler-digital.gif",
-    productName: "لیوان الکی",
-  },
-  {
-    price: ["ویژه" , 'premium'],
-    imgsrc: "tumbler-digital.gif",
-    productName: "لیوان خیاری",
-  },
-];
 // Default Products
 let newProducts = products.slice(paginationState.page * paginationState.limit , (paginationState.page + 1) * paginationState.limit);
 
@@ -70,7 +37,8 @@ function appendNewProducts (newProducts) {
   yieldEl.innerHTML = ''
   // Add New Products
   newProducts.map(index => {
-    const {price : [price , type] , imgsrc , productName} = index;
+    const {price : [price , type] , imgsrc , productName , information} = index;
+    const {format , size , downloadSize , creator} = information;
     yieldEl.innerHTML += `
         <div class="card" data-price="${type}">
             <div class="preview">
@@ -80,22 +48,46 @@ function appendNewProducts (newProducts) {
                 </div>
                 <img src="assets/picture/${imgsrc}" alt="">
                 <div class="information">
-                    <p>Name : <b>Tumbler</b></p>
-                    <p>Format : <b>gif</b></p>
-                    <p>Size : <b>500 * 500</b></p>
-                    <p>Download Size : <b>0.7MB</b></p>
-                    <p>Creator : <b>IDN</b></p>
+                    <p>نام محصول : <b>${productName}</b></p>
+                    <p>فرمت : <b>${format}</b></p>
+                    <p>سایز : <b>${size}</b></p>
+                    <p>حجم : <b>${downloadSize}</b></p>
+                    <p>سازنده : <b>${creator}</b></p>
                 </div>
             </div>
             <div class="desc">
                 <p class="product-name">${productName}</p>
-                <a href="#">
+                <a href="assets/picture/${imgsrc}" id='download'>
                     دانلود
                     <i class="uil uil-download-alt"></i>
                 </a>
             </div>
         </div>
       `;
+  })
+}
+
+
+const downloadProduct = (elements) => {
+  downloadModalImage.src = ''
+  let product;
+  const cancelDownload = $('#cancelDownload');
+  const continueDownload = $('#continueDownload');
+  elements.forEach(index => {
+    index.addEventListener('click' , e => {
+      e.preventDefault()
+      product = e.target.href;
+      downloadModalImage.src = product;
+      downloadModal.classList.remove('hidden')
+      overlay.classList.remove('hidden')
+    })
+  })
+  cancelDownload.addEventListener('click' , killEverything)
+  continueDownload.addEventListener('click' , e => {
+    const dd = document.createElement('a');
+    dd.href = product;
+    dd.download = product.split('/')[5];
+    dd.click()
   })
 }
 // Handle Back , Next Button
@@ -123,6 +115,10 @@ const getPage = (angle , filterProducts) => {
   newProducts = products.slice(paginationState.page * paginationState.limit , (paginationState.page + 1) * paginationState.limit)
   // Append To the Html
   appendNewProducts(newProducts);
+
+  
+  downloadEl = document.querySelectorAll("#download");
+  downloadProduct(downloadEl)
 }
 
 const filterByPriceType = argType => {
@@ -135,8 +131,14 @@ const filterByPriceType = argType => {
   getPage('center' , filterProducts)
 }
 
+// Default Call Funcs
+
 // Create Items By Default
 appendNewProducts(newProducts)
+// Find Default Links
+downloadEl = document.querySelectorAll('#download')
+// Create Default Link onClick
+downloadProduct(downloadEl)
 
 // Events
 

@@ -4,10 +4,14 @@ header {
         margin-top: .9rem;
     }
     nav {
-        position: sticky;
         top: 0;
         background-color: $background-color;
         align-items: center;
+
+        .mobile-name , #mobileEditTheme , #mobileEditTheme input{
+            align-items: center;
+            display: none;
+        }
         a {
             display: flex;
             align-items: center;

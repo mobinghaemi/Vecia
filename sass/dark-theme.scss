@@ -30,6 +30,12 @@
         background-color: #333 !important;
         .preview {
             background-color: $bold-color !important;
+            .information {
+                background-color: #444 !important;
+            }
+        }
+        .product-name::first-letter {
+            color: white !important;
         }
     }
     .modal {
@@ -39,6 +45,6 @@
         color: white;
     }
     .horizontal-menu {
-        background-color: $bold-color ;
+        background-color: $bold-color;
     }
 }
