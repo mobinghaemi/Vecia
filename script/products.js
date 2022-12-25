@@ -32,7 +32,7 @@ let newProducts = products.slice(paginationState.page * paginationState.limit , 
 // Funcs
 
 // Append 3 Products
-function appendNewProducts (newProducts) {
+const appendNewProducts = newProducts => {
   // Clear
   yieldEl.innerHTML = ''
   // Add New Products
@@ -66,8 +66,7 @@ function appendNewProducts (newProducts) {
       `;
   })
 }
-
-
+// Show Download Modal And Download Files
 const downloadProduct = (elements) => {
   downloadModalImage.src = ''
   let product;
@@ -115,12 +114,11 @@ const getPage = (angle , filterProducts) => {
   newProducts = products.slice(paginationState.page * paginationState.limit , (paginationState.page + 1) * paginationState.limit)
   // Append To the Html
   appendNewProducts(newProducts);
-
-  
+  // Handle Download Event
   downloadEl = document.querySelectorAll("#download");
   downloadProduct(downloadEl)
 }
-
+// Filter Product By Everything :)
 const filterByPriceType = argType => {
   // Create New Products With User Search
   const filterProducts = products.filter(index => {
@@ -128,6 +126,20 @@ const filterByPriceType = argType => {
     return type === argType
   })
 
+  getPage('center' , filterProducts)
+}
+
+// Search Product And Show Result
+const searchProduct = e => {
+  e.preventDefault();
+  // Get User Search Value
+  const searchValue = searchInput.value;
+  // Create New Products With User Search
+  const filterProducts = products.filter(index => {
+    const {price , imgsrc , productName} = index;
+    return productName.includes(searchValue)
+  })
+  // Slice
   getPage('center' , filterProducts)
 }
 
@@ -142,31 +154,14 @@ downloadProduct(downloadEl)
 
 // Events
 
+// Pagination Buttons
 nextPageBtn.addEventListener("click", _ => getPage('right'));
 nextProductShowBtn.addEventListener("click", _ => getPage('right'));
 previousProductShowBtn.addEventListener("click", _ => getPage('left'));
-
-searchForm.addEventListener('submit' , e => {
-  e.preventDefault();
-  // Get User Search Value
-  const searchValue = searchInput.value;
-  // Create New Products With User Search
-  const filterProducts = products.filter(index => {
-    const {price , imgsrc , productName} = index;
-    return productName.includes(searchValue)
-  })
-  // Slice
-  getPage('center' , filterProducts)
-})
-
-
+// Search Handle
+searchForm.addEventListener('submit' , searchProduct)
+// Filter Buttons
 freeProductBtn.addEventListener('click' , _ => filterByPriceType('free'))
-
 premiumProductBtn.addEventListener('click' , _ => filterByPriceType('premium'))
-
-newestProductBtn.addEventListener('click' , () => {
-  getPage('center' , products)
-})
-popularProductBtn.addEventListener('click' , () => {
-  getPage('center' , products.reverse())
-})
+newestProductBtn.addEventListener('click' , _ => getPage('center' , products))
+popularProductBtn.addEventListener('click' , _ => getPage('center' , products.reverse()))

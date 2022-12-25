@@ -93,11 +93,22 @@
         flex-direction: column;
         align-items: center;
 
+        width: 70%;
+
         img {
             width: 75%;
         }
         p {
             font-size: 1rem !important;
+        }
+    }
+}
+
+@media screen and (max-width : 425px) {
+    .modal {
+        width: 65%;
+        p.bold {
+            font-size: 1.5rem;
         }
     }
 }

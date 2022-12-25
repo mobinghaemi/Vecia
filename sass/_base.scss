@@ -66,6 +66,9 @@ img , .price , label {
     -moz-user-select: none;
     -ms-user-select: none;
 }
+nav , footer {
+    padding: .3rem;
+}
 // Useful Classes
 button.btn-like-input {
     border: 1px solid rgba(128, 128, 128, 0.2) !important;
