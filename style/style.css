@@ -51,8 +51,8 @@ table {
 }
 
 @font-face {
-  font-family: vazir;
-  src: url(../assets/fonts/Vazir.woff), url(../assets/fonts/Vazir.ttf);
+  font-family: 'Vazir';
+  src: url('../assets/fonts/Vazir.ttf');
 }
 .container {
   max-width: 1280px;
@@ -77,7 +77,7 @@ body > * {
 }
 
 * {
-  font-family: vazir;
+  font-family: 'Vazir' !important;
   color: #979797;
   font-size: 1rem;
 }

@@ -19,7 +19,8 @@ const mobileOverlay = $('.mobile-overlay')
 
 // Load Saved Theme 
 onload = () => {
-    const {color , mode} = JSON.parse(localStorage.getItem('theme'))
+    const defaultStyle = {color : 'light' , mode : false};
+    const {color , mode} = localStorage.getItem('theme') ? JSON.parse(localStorage.getItem('theme')) : defaultStyle
     color === "dark" ? body.classList.add('dark') : body.classList.remove('dark');
     toggleTheme && mode && (toggleTheme.checked = true)
 }
